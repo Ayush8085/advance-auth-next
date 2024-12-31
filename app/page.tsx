@@ -11,7 +11,7 @@ export default function Home() {
         <p className="text-3xl font-normal text-slate-700">Advance authentication </p>
       </div>
 
-      <Link href={"/sign-in"}>
+      <Link href={"/auth/sign-in"}>
         <Button className="mt-10" variant={"secondary"} size={"lg"}>Sign In</Button>
       </Link>
     </div>

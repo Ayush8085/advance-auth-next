@@ -18,7 +18,6 @@ import { Input } from "@/components/ui/input"
 import { RegisterSchema } from '@/schema'
 import FormError from './form-error';
 import FormSuccess from './form-success';
-import { login } from '@/actions/login';
 import { useTransition } from 'react';
 import { register } from '@/actions/register';
 
@@ -54,7 +53,7 @@ const SignupForm = () => {
         <CardWrapper
             headerLabel="Create an account!"
             backButtonLabel="Already have an account?"
-            backButtonHref="/sign-in"
+            backButtonHref="/auth/sign-in"
             showSocial
         >
             <Form {...form}>
