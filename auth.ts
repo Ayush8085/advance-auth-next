@@ -10,6 +10,17 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     ...authConfig,
     session: { strategy: 'jwt' },
     adapter: PrismaAdapter(db),
+    pages: {
+        signIn: '/auth/sign-in',
+    },
+    events: {
+        async linkAccount({ user }) {
+            await db.user.update({
+                where: { id: user.id },
+                data: { emailVerified: new Date() },
+            })
+        }
+    },
     callbacks: {
         async session({ session, token }) {
             if (token.sub && session.user) {
