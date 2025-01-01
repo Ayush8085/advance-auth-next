@@ -15,30 +15,37 @@ import {
     FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { ResetSchema } from '@/schema'
+import { NewPasswordSchema } from '@/schema'
 import FormError from './form-error';
 import FormSuccess from './form-success';
 import { useTransition } from 'react';
-import { reset } from '@/actions/reset';
+import { useSearchParams } from 'next/navigation';
+import { newPassword } from '@/actions/new-password';
 
-const ResetForm = () => {
+const NewPasswordForm = () => {
     const [error, setError] = useState<string | undefined>("");
     const [success, setSuccess] = useState<string | undefined>("");
     const [isPending, startTransition] = useTransition();
-    const form = useForm<z.infer<typeof ResetSchema>>({
-        resolver: zodResolver(ResetSchema),
+
+    const searchParams = useSearchParams();
+    const token = searchParams.get("token") as string;
+
+    const form = useForm<z.infer<typeof NewPasswordSchema>>({
+        resolver: zodResolver(NewPasswordSchema),
         defaultValues: {
-            email: "",
+            password: "",
         }
     })
 
     // 2. Define a submit handler.
-    function onSubmit(values: z.infer<typeof ResetSchema>) {
+    function onSubmit(values: z.infer<typeof NewPasswordSchema>) {
         setError("");
         setSuccess("");
 
+        console.log("values: ", values);
+
         startTransition(() => {
-            reset(values)
+            newPassword(values, token)
                 .then((data) => {
                     if (data.error) setError(data.error);
                     if (data.success) setSuccess(data.success);
@@ -49,7 +56,7 @@ const ResetForm = () => {
 
     return (
         <CardWrapper
-            headerLabel="Forgot your password?"
+            headerLabel="Enter new password"
             backButtonLabel="Back to login"
             backButtonHref="/auth/sign-in"
         >
@@ -57,12 +64,12 @@ const ResetForm = () => {
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
                     <FormField
                         control={form.control}
-                        name="email"
+                        name="password"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Email</FormLabel>
+                                <FormLabel>New password</FormLabel>
                                 <FormControl>
-                                    <Input type='email' disabled={isPending} placeholder="Enter your email" {...field} />
+                                    <Input type='password' disabled={isPending} placeholder="******" {...field} />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -70,11 +77,11 @@ const ResetForm = () => {
                     />
                     <FormError message={error} />
                     <FormSuccess message={success} />
-                    <Button type="submit" className='w-full' disabled={isPending}>Send reset email</Button>
+                    <Button type="submit" className='w-full' disabled={isPending}>Reset Password</Button>
                 </form>
             </Form>
         </CardWrapper>
     )
 }
 
-export default ResetForm
+export default NewPasswordForm
