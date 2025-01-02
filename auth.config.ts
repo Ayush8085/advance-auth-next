@@ -25,16 +25,12 @@ export default {
             authorize: async (credentials) => {
                 const validatedFields = LoginSchema.safeParse(credentials);
 
-                console.log("----- auth.config.ts -----");
-
-
                 if (validatedFields.success) {
                     const { email, password } = validatedFields.data;
 
                     const user = await getUserByEmail(email);
 
                     if (!user || !user.password) {
-                        console.log('User or password missing');
                         return null;
                     }
 

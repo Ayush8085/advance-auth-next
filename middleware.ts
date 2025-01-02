@@ -6,11 +6,8 @@ const { auth } = NextAuth(authConfig);
 
 export default async function authMiddleware(req: any) {
     const { nextUrl } = req;
-    const isLoggedIn =  await auth();
-
-    console.log("----- middleware.ts -----: ");
-    
-    
+    const isLoggedIn = await auth();
+        
     const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
     const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
     const isAuthRoute = authRoutes.includes(nextUrl.pathname);

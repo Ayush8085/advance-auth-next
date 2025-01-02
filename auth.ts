@@ -5,6 +5,7 @@ import authConfig from "./auth.config";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { db } from "@/lib/db";
 import { getUserById } from "./data/user";
+import { DEFAULT_LOGIN_REDIRECT } from "./routes";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
     ...authConfig,

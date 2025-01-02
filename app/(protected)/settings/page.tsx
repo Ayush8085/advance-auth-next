@@ -5,13 +5,11 @@ const Settings = async () => {
     const session = await auth();
 
     return (
-        <div>
-            {JSON.stringify(session)}
-
-            <form action={async ()=> {
+        <div className="bg-white p-10 rounded-xl">
+            <form action={async () => {
                 "use server";
 
-                await signOut();
+                await signOut({ redirectTo: "/auth/sign-in" });
             }}>
                 <Button type="submit">Sign Out</Button>
             </form>
