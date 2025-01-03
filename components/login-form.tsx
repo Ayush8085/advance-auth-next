@@ -99,7 +99,7 @@ const LoginForm = () => {
                     />
                     <FormError message={error || urlError} />
                     <FormSuccess message={success} />
-                    <Button type="submit" className='w-full' disabled={isPending}>Login</Button>
+                    <Button  type="submit" className='w-full' disabled={isPending}>Login</Button>
                 </form>
             </Form>
         </CardWrapper>

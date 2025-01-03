@@ -46,11 +46,11 @@ export const CardWrapper = ({
             <CardFooter>
                 {showSocial && (
                     <div className="w-full flex items-center gap-x-2">
-                        <Button variant="outline" className="w-full" onClick={() => onClick("google")}>
+                        <Button asChild variant="outline" className="w-full" onClick={() => onClick("google")}>
                             <FcGoogle className="h-5 w-5" />
                         </Button>
 
-                        <Button variant="outline" className="w-full" onClick={() => onClick("github")}>
+                        <Button asChild variant="outline" className="w-full" onClick={() => onClick("github")}>
                             <FaGithub className="h-5 w-5" />
                         </Button>
 
@@ -59,7 +59,7 @@ export const CardWrapper = ({
             </CardFooter>
 
             <CardFooter>
-                <Button variant={"link"} className="w-full">
+                <Button asChild variant={"link"} className="w-full">
                     <Link href={backButtonHref}>{backButtonLabel}</Link>
                 </Button>
             </CardFooter>

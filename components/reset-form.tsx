@@ -70,7 +70,7 @@ const ResetForm = () => {
                     />
                     <FormError message={error} />
                     <FormSuccess message={success} />
-                    <Button type="submit" className='w-full' disabled={isPending}>Send reset email</Button>
+                    <Button  type="submit" className='w-full' disabled={isPending}>Send reset email</Button>
                 </form>
             </Form>
         </CardWrapper>

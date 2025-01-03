@@ -100,7 +100,7 @@ const SignupForm = () => {
 
                     <FormError message={error} />
                     <FormSuccess message={success} />
-                    <Button type="submit" className='w-full' disabled={isPending}>Create an account</Button>
+                    <Button  type="submit" className='w-full' disabled={isPending}>Create an account</Button>
                 </form>
             </Form>
         </CardWrapper>

@@ -81,7 +81,6 @@ const Settings = () => {
                             />
                             {user?.isOAuth === false && (
                                 <>
-
                                     <FormField
                                         control={form.control}
                                         name="email"

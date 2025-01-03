@@ -42,8 +42,6 @@ const NewPasswordForm = () => {
         setError("");
         setSuccess("");
 
-        console.log("values: ", values);
-
         startTransition(() => {
             newPassword(values, token)
                 .then((data) => {
@@ -77,7 +75,7 @@ const NewPasswordForm = () => {
                     />
                     <FormError message={error} />
                     <FormSuccess message={success} />
-                    <Button type="submit" className='w-full' disabled={isPending}>Reset Password</Button>
+                    <Button  type="submit" className='w-full' disabled={isPending}>Reset Password</Button>
                 </form>
             </Form>
         </CardWrapper>
